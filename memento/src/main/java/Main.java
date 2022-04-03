@@ -1,27 +1,34 @@
 import br.com.designpatterns.memento.CareTaker;
 import br.com.designpatterns.memento.Memento;
 import br.com.designpatterns.memento.Originator;
-import br.com.designpatterns.model.User;
+
+import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
         Originator originator = new Originator();
         CareTaker careTaker = new CareTaker(originator);
+        Random random = new Random();
+        int upperbound = 100;
 
-        originator.addUserAndPassword(new User("luiz", "123"));
-        careTaker.saveState();
-        originator.addUserAndPassword(new User("janna", "321"));
-        careTaker.saveState();
-        originator.addUserAndPassword(new User("david", "!@#"));
-        careTaker.saveState();
-        originator.addUserAndPassword(new User("artur", "%¨&"));
+        originator.setNumber(random.nextInt(upperbound), careTaker);
+        originator.setNumber(random.nextInt(upperbound), careTaker);
+        originator.setNumber(random.nextInt(upperbound), careTaker);
+        originator.setNumber(random.nextInt(upperbound), careTaker);
+        originator.setNumber(random.nextInt(upperbound), careTaker);
+
+        System.out.println("\n");
+
+        int index = 0;
         for(Memento memento : careTaker.getMementos()){
-            System.out.println(memento.getUser().toString());
+            System.out.println("Element at position " + (index++) + ": " + memento.getNumber().toString());
         }
-        careTaker.undo();
-        careTaker.undo();
-        careTaker.undo();
+
+        System.out.println("\n");
+        careTaker.getNumber(0);
+        careTaker.getNumber(2);
+        careTaker.getNumber(4);
 
     }
 }

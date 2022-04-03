@@ -8,11 +8,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Memento {
 
-    public Memento(User user) {
-        this.user = user;
-    }
-
-    private User user;
-    private String sla;
+    private Integer number;
 
 }

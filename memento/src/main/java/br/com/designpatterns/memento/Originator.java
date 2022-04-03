@@ -1,23 +1,22 @@
 package br.com.designpatterns.memento;
 
-import br.com.designpatterns.model.User;
-
 public class Originator {
 
-    private User user;
+    private Integer number;
 
     public Memento createMemento(){
-        System.out.println("save the user = " + user.toString());
-        return new Memento(user);
+        System.out.println("save the number = " + number.toString());
+        return new Memento(number);
     }
 
-    public void setMemento(Memento memento){
-        this.user = memento.getUser();
-        System.out.println("recovered the user = " + memento.getUser().toString());
+    public void getNumber(Memento memento){
+        this.number = memento.getNumber();
+        System.out.println("recovered the number = " + memento.getNumber().toString());
     }
 
-    public void addUserAndPassword(User user){
-        this.user = user;
+    public void setNumber(Integer number, CareTaker careTaker){
+        this.number = number;
+        careTaker.saveState();
     }
 
 }
